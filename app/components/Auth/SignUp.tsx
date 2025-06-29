@@ -1,6 +1,8 @@
 "use client";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useFormik } from "formik";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import {
   AiFillGithub,
   AiOutlineEye,
@@ -24,14 +26,34 @@ const schema = Yup.object().shape({
 
 const SignUp: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
+  const [register, { data, isSuccess, error }] = useRegisterMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      const message = data?.message || "Registration successful";
+      toast.success(message);
+      setRoute("Verification");
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorData = error as { data: { message: string } };
+        toast.error("Something went wrong.");
+      }
+    }
+  }, [isSuccess, error]);
 
   const formik = useFormik({
     initialValues: { name: "", email: "", password: "" },
     validationSchema: schema,
-    onSubmit: async ({ email, password }) => {
-      setRoute("Verification")
-      console.log(email, password);
-
+    onSubmit: async ({name, email, password }) => {
+      const data = {
+        name,
+        email,
+        password,
+      };
+      await register(data);
+      // setRoute("Verification")
+      // console.log(email, password);
     },
   });
 
