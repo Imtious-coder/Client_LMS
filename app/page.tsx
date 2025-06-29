@@ -21,11 +21,12 @@ import Heading from "./utils/Heading";
 
 const Page: FC = () => {
   const [open, setOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(0); 
+  const [route, setRoute] = useState("Login"); 
   return (
     <div className="">
       <Heading title="LMS" description="" keywords="" />
-      <Header open={open} setOpen={setOpen} activeItem={activeItem} />
+      <Header open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route} />
       <Hero />
     </div>
   );
