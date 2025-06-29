@@ -1,6 +1,8 @@
 "use client";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { useFormik } from "formik";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import {
   AiFillGithub,
   AiOutlineEye,
@@ -12,6 +14,7 @@ import { style } from "../../../app/styles/style";
 
 type Props = {
   setRoute: (route: string) => void;
+  setOpen: (open: string) => void;
 };
 
 const schema = Yup.object().shape({
@@ -21,16 +24,31 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Please enter your password").min(6),
 });
 
-const Login: FC<Props> = ({ setRoute }) => {
+const Login: FC<Props> = ({ setRoute, setOpen }) => {
   const [show, setShow] = useState(false);
+  const [login, { isSuccess, error, data }] = useLoginMutation();
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
-      console.log(email, password);
+      await login({ email, password });
+      // console.log(email, password);
     },
   });
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Login Successful.");
+      setOpen(false);
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorData = error as { data: { message: string } };
+        toast.error("Something went wrong.");
+        // toast.error(errorData.data.message);
+      }
+    }
+  }, [isSuccess, error]);
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
   return (

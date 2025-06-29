@@ -1,7 +1,10 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
+import { useSelector } from "react-redux";
+import avatar from "../../public/assests/avatar.png";
 import CustomModal from "../utils/CustomModal";
 import NavItems from "../utils/NavItems";
 import { ThemeSwitcher } from "../utils/ThemeSwitcher";
@@ -20,6 +23,7 @@ type Props = {
 const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const { user } = useSelector((state: any) => state.auth);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -36,6 +40,9 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
       setOpenSidebar(false);
     }
   };
+
+  console.log({user});
+
   return (
     <div className="w-full relative">
       <div
@@ -64,11 +71,21 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
                   onClick={() => setOpenSidebar(true)}
                 />
               </div>
-              <HiOutlineUserCircle
-                size={25}
-                className="hidden md:block cursor-pointer dark:text-white text-black"
-                onClick={() => setOpen(true)}
-              />
+              {user ? (
+                <Link href={"/profile"}>
+                  <Image
+                    src={user.avatar ? user.avatar : avatar}
+                    alt=""
+                    className="w-[30px] h-[30px] rounded-full"
+                  />
+                </Link>
+              ) : (
+                <HiOutlineUserCircle
+                  size={25}
+                  className="hidden md:block cursor-pointer dark:text-white text-black"
+                  onClick={() => setOpen(true)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -100,7 +117,13 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
       {route === "Login" && (
         <>
           {open && (
-            <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} activeItem={activeItem} component={Login} />
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Login}
+            />
           )}
         </>
       )}
@@ -108,14 +131,26 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
       {route === "Sign-Up" && (
         <>
           {open && (
-            <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} activeItem={activeItem} component={SignUp} />
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={SignUp}
+            />
           )}
         </>
       )}
       {route === "Verification" && (
         <>
           {open && (
-            <CustomModal open={open} setOpen={setOpen} setRoute={setRoute} activeItem={activeItem} component={Verification} />
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Verification}
+            />
           )}
         </>
       )}
