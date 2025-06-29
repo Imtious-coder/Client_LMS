@@ -40,16 +40,19 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Login Successful.");
-      setOpen(false);
+      // setOpen("");
+      // setOpen(false);
     }
     if (error) {
       if ("data" in error) {
         const errorData = error as { data: { message: string } };
         toast.error("Something went wrong.");
-        // toast.error(errorData.data.message);
+        toast.error(errorData.data.message);
       }
     }
   }, [isSuccess, error]);
+
+  console.log({ data });
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
   return (

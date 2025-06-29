@@ -74,7 +74,7 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
         }`}
       >
         <div className="w-[95%] md:w-[92%] m-auto py-2 h-full ">
-          <div className="w-full h-[80px] flex items-center justify-between p-3">
+          <div className="w-full flex items-center justify-between p-3">
             <Link
               href={"/"}
               className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}
