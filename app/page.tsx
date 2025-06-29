@@ -1,6 +1,8 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
+import Header from "./components/Header";
+import Hero from "./components/Route/Hero";
 import Heading from "./utils/Heading";
 
 // interface Props {}
@@ -18,13 +20,13 @@ import Heading from "./utils/Heading";
 // };
 
 const Page: FC = () => {
+  const [open, setOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
   return (
     <div className="">
-      <Heading
-        title="LMS"
-        description="Learning is the key"
-        keywords="Web, MERN, Python"
-      />
+      <Heading title="LMS" description="" keywords="" />
+      <Header open={open} setOpen={setOpen} activeItem={activeItem} />
+      <Hero />
     </div>
   );
 };
