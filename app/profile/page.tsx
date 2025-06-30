@@ -16,7 +16,7 @@ const Page: FC<Props> = (props) => {
   return (
     <div>
       <Protected>
-        <Heading title={`${user?.name} - Profile`} description="" keywords="" />
+        <Heading title={`${user?.name} Profile - LMS`} description="" keywords="" />
         <Header
           open={open}
           setOpen={setOpen}

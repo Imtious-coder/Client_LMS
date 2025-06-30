@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { GoListOrdered } from "react-icons/go";
-import { GrAnnounce, GrCertificate } from "react-icons/gr";
+import { GrAnnounce, GrCertificate, GrUserAdmin } from "react-icons/gr";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { SiCoursera } from "react-icons/si";
 import avatarDefault from "../../../public/assests/avatar.png";
@@ -32,7 +33,9 @@ const SidebarProfile: FC<Props> = ({
       >
         <Image
           // src={avatarDefault}
-          src={user.avatar || avatar ? user.avatar.url || avatar : avatarDefault}
+          src={
+            user.avatar || avatar ? user.avatar.url || avatar : avatarDefault
+          }
           alt=""
           width={20}
           height={20}
@@ -97,8 +100,23 @@ const SidebarProfile: FC<Props> = ({
           Leaderboard
         </h5>
       </div>
+
+      {user.role === "admin" && (
+        <Link
+          href={"/admin"}
+          className={`w-full flex items-center px-3 py-4 cursor-pointer ${
+            active === 8 ? "bg-slate-800" : "bg-transparent"
+          }`}
+          onClick={() => setActive(8)}
+        >
+          <GrUserAdmin size={20} fill="#fff" />
+          <h5 className="pl-2 md:block hidden font-Poppins text-white">
+            Admin Dashboard
+          </h5>
+        </Link>
+      )}
       <div
-        className={`w-full flex items-center px-3 py-4 cursor-pointer ${ 
+        className={`w-full flex items-center px-3 py-4 cursor-pointer ${
           active === 7 ? "bg-slate-800" : "bg-transparent"
         }`}
         onClick={() => logOutHandler()}
