@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 type Props = {};
 
-const Page: FC<Props> = (props) => {
+const page: FC<Props> = (props) => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(5);
   const [route, setRoute] = useState("Login");
@@ -30,4 +30,4 @@ const Page: FC<Props> = (props) => {
   );
 };
 
-export default Page;
+export default page;
