@@ -1,16 +1,28 @@
 "use client";
-import { useGetAllCourseQuery } from "@/redux/features/courses/coursesApi";
-import { Box, Button } from "@mui/material";
+import {
+  useDeleteCourseMutation,
+  useGetAllCourseQuery,
+} from "@/redux/features/courses/coursesApi";
+import { Box, Button, Modal } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { format } from "timeago.js";
+import { style } from "../../../styles/style";
 import Loader from "../../Loader";
 
 type Props = {};
 
 const AllCourses = (props: Props) => {
-  const { isLoading, data, error } = useGetAllCourseQuery();
+  const { isLoading, data, refetch } = useGetAllCourseQuery(
+    {},
+    { refetchOnMountOrArgChange: true }
+  );
+  const [open, setOpen] = useState(false);
+  const [courseId, setCourseId] = useState("");
+  const [deleteCourse, { isSuccess, error }] = useDeleteCourseMutation({});
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -39,7 +51,12 @@ const AllCourses = (props: Props) => {
       renderCell: (params: any) => {
         return (
           <>
-            <Button>
+            <Button
+              onClick={() => {
+                setOpen(!open);
+                setCourseId(params.row.id);
+              }}
+            >
               <AiOutlineDelete className="text-white" size={20} />
             </Button>
           </>
@@ -88,6 +105,28 @@ const AllCourses = (props: Props) => {
         });
       });
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(false)
+      refetch();
+      toast.success("Course Deleted Successfully");
+      // redirect("/admin/all-courses");
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorMessage = error as any;
+        toast.error(errorMessage.data.message);
+        toast.error("Something went wrong");
+      }
+    }
+  }, [isSuccess, error]);
+
+  const handleDelete = async () => {
+    const id = courseId;
+    await deleteCourse(id);
+    console.log("Deleted Course");
+  };
 
   return (
     <div className="mt-[120px]">
@@ -145,6 +184,34 @@ const AllCourses = (props: Props) => {
           >
             <DataGrid checkboxSelection rows={rows} columns={columns} />
           </Box>
+          {open && (
+            <Modal
+              open={open}
+              onClose={() => setOpen(!open)}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-slate-900 rounded-[8px] shadow p-4 outline-none ">
+                <h1 className={`${style.title}`}>
+                  Are you sure you want to delete this course?
+                </h1>
+                <div className="flex w-full items-center justify-between mb-6 mt-4">
+                  <div
+                    className={`${style.button} !w-[120px] h-[30px] !bg-[#57c7a3] border border-[#ffffff6c]`}
+                    onClick={() => setOpen(!open)}
+                  >
+                    Cancel
+                  </div>
+                  <div
+                    className={`${style.button} !w-[120px] h-[30px] !bg-orange-700 border border-[#ffffff6c]`}
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </div>
+                </div>
+              </Box>
+            </Modal>
+          )}
         </Box>
       )}
     </div>
