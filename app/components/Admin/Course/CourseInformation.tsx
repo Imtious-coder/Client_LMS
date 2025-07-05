@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { FC, useState } from "react";
 import { style } from "../../../styles/style";
 
@@ -209,7 +210,9 @@ const CourseInformation: FC<Props> = ({
             onDrop={handleDrop}
           >
             {courseInfo.thumbnail ? (
-              <img
+              <Image
+                width={100}
+                height={100}
                 src={courseInfo.thumbnail}
                 alt=""
                 className="max-h-full w-full object-cover"
