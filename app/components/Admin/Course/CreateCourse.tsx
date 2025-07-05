@@ -4,10 +4,11 @@ import CourseContent from "./CourseContent";
 import CourseData from "./CourseData";
 import CourseInformation from "./CourseInformation";
 import CourseOptions from "./CourseOptions";
+import CoursePreview from "./CoursePreview";
 
 type Props = {};
 
-const CreateCourse: FC<Props> = (props) => {
+const CreateCourse: FC<Props> = () => {
   const [active, setActive] = useState(0);
   const [courseInfo, setCourseInfo] = useState({
     name: "",
@@ -81,6 +82,10 @@ const CreateCourse: FC<Props> = (props) => {
     setCourseData(data);
   };
 
+  const handleCourseCreate = async (e: any) => {
+    const data = courseData;
+  };
+
   console.log({ courseData });
 
   return (
@@ -111,6 +116,14 @@ const CreateCourse: FC<Props> = (props) => {
             active={active}
             setActive={setActive}
             handleSubmit={handleSubmit}
+          />
+        )}
+        {active === 3 && (
+          <CoursePreview
+            active={active}
+            setActive={setActive}
+            courseData={courseData}
+            handleCourseCreate={handleCourseCreate}
           />
         )}
       </div>
