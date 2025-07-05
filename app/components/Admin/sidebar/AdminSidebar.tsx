@@ -4,13 +4,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, JSX, useEffect, useState } from "react";
-import {
-  BiArrowBack,
-  BiCategory,
-  BiChart,
-  BiExit,
-  BiHistory,
-} from "react-icons/bi";
+import { BiCategory, BiChart, BiExit, BiHistory } from "react-icons/bi";
 import { BsFillHouseFill } from "react-icons/bs";
 import {
   RiArrowGoForwardFill,
@@ -24,9 +18,8 @@ import { useSelector } from "react-redux";
 import { FcVideoCall } from "react-icons/fc";
 import { GrGroup, GrMapLocation } from "react-icons/gr";
 import { SiQuizlet, SiWebpack } from "react-icons/si";
-import avatarDefault from "../../../../public/assests/avatar.png";
-import { IoIosArrowBack } from "react-icons/io";
 import { TfiControlBackward } from "react-icons/tfi";
+import avatarDefault from "../../../../public/assests/avatar.png";
 
 interface itemProps {
   title: string;
@@ -43,8 +36,10 @@ const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography className="!text-[16px] !font-Poppins">{title}</Typography>
-      <Link href={to} />
+      {/* <Typography className="!text-[16px] !font-Poppins">{title}</Typography> */}
+      <Link href={to} className="!text-[16px] !font-Poppins">
+        {title}
+      </Link>
     </MenuItem>
   );
 };
@@ -105,7 +100,7 @@ const AdminSidebar = () => {
           left: 0,
           height: "100vh",
           overflowY: isCollapsed ? "hidden" : "scroll",
-          width: isCollapsed ? "60px" : "22%",
+          width: isCollapsed ? "60px" : "18%",
         }}
         className="bg-blue-900/30"
       >
@@ -184,7 +179,7 @@ const AdminSidebar = () => {
             </Typography>
             <Item
               title={isCollapsed ? "" : "Users"}
-              to="/admin/users"
+              to={"/admin/users"}
               icon={<GrGroup />}
               selected={selected}
               setSelected={setSelected}

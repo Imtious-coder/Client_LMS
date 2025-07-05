@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
-import AdminSidebar from "../components/Admin/admin/AdminSidebar";
 import DashBoardHero from "../components/Admin/DashBoardHero";
+import AdminSidebar from "../components/Admin/sidebar/AdminSidebar";
 import AdminProtected from "../hooks/adminProtected";
 import Heading from "../utils/Heading";
 
@@ -13,7 +13,7 @@ const page: FC<Props> = (props) => {
       <AdminProtected>
         <Heading title={` Admin - LMS`} description="" keywords="" />
         <div className="flex h-[200vh]">
-          <div className="2xl:w-[16%] w-1/4">
+          <div className="2xl:w-[16%] w-1/5 z-50">
             <AdminSidebar />
           </div>
           <div className="w-[85%]">
