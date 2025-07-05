@@ -5,6 +5,7 @@ import {
 } from "@/redux/features/courses/coursesApi";
 import { Box, Button, Modal } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -38,7 +39,9 @@ const AllCourses = (props: Props) => {
         return (
           <>
             <Button>
-              <BiEdit className="text-white" size={20} />
+              <Link href={`/admin/edit-course/${params.row.id}`}>
+                <BiEdit className="text-white" size={20} />
+              </Link>
             </Button>
           </>
         );
@@ -108,7 +111,7 @@ const AllCourses = (props: Props) => {
 
   useEffect(() => {
     if (isSuccess) {
-      setOpen(false)
+      setOpen(false);
       refetch();
       toast.success("Course Deleted Successfully");
       // redirect("/admin/all-courses");

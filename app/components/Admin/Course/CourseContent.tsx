@@ -21,7 +21,7 @@ const CourseContent: FC<Props> = ({
   handleSubmit: handleCourseSubmit,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(
-    Array(courseContentData.length).fill(false)
+    Array(courseContentData?.length).fill(false)
   );
   const [activeSection, setActiveSection] = useState(1);
 
@@ -60,9 +60,9 @@ const CourseContent: FC<Props> = ({
     } else {
       let newVideoSection = "Demo";
 
-      if (courseContentData.length > 0) {
+      if (courseContentData?.length > 0) {
         const lastVideoSection =
-          courseContentData[courseContentData.length - 1].videoSection;
+          courseContentData[courseContentData?.length - 1].videoSection;
 
         // use the last video section if available, else use user input
         if (lastVideoSection) {
@@ -82,11 +82,11 @@ const CourseContent: FC<Props> = ({
 
   const addNewSection = () => {
     if (
-      courseContentData[courseContentData.length - 1].title === "" ||
-      courseContentData[courseContentData.length - 1].description === "" ||
-      courseContentData[courseContentData.length - 1].videoUrl === "" ||
-      courseContentData[courseContentData.length - 1].links[0].title === "" ||
-      courseContentData[courseContentData.length - 1].links[0].url === ""
+      courseContentData[courseContentData?.length - 1].title === "" ||
+      courseContentData[courseContentData?.length - 1].description === "" ||
+      courseContentData[courseContentData?.length - 1].videoUrl === "" ||
+      courseContentData[courseContentData?.length - 1].links[0].title === "" ||
+      courseContentData[courseContentData?.length - 1].links[0].url === ""
     ) {
       toast.error("Please fill all the fields first!");
     } else {
@@ -108,11 +108,11 @@ const CourseContent: FC<Props> = ({
 
   const handleOptions = () => {
     if (
-      courseContentData[courseContentData.length - 1].title === "" ||
-      courseContentData[courseContentData.length - 1].description === "" ||
-      courseContentData[courseContentData.length - 1].videoUrl === "" ||
-      courseContentData[courseContentData.length - 1].links[0].title === "" ||
-      courseContentData[courseContentData.length - 1].links[0].url === ""
+      courseContentData[courseContentData?.length - 1].title === "" ||
+      courseContentData[courseContentData?.length - 1].description === "" ||
+      courseContentData[courseContentData?.length - 1].videoUrl === "" ||
+      courseContentData[courseContentData?.length - 1].links[0].title === "" ||
+      courseContentData[courseContentData?.length - 1].links[0].url === ""
     ) {
       toast.error("Sction can't be empty!");
     } else {
@@ -120,7 +120,7 @@ const CourseContent: FC<Props> = ({
       handleCourseSubmit();
     }
   };
-
+  
   return (
     <div className="w-[80%] m-auto mt-24 p-3">
       <form onSubmit={handleSubmit}>
@@ -311,7 +311,7 @@ const CourseContent: FC<Props> = ({
                 )}
                 <br />
                 {/* add new content */}
-                {index === courseContentData.length - 1 && (
+                {index === courseContentData?.length - 1 && (
                   <div>
                     <p
                       className="flex items-center text-[18px] text-white cursor-pointer"
