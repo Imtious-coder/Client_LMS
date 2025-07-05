@@ -1,23 +1,24 @@
 "use client";
-import { FC } from "react";
-import DashBoardHero from "../components/Admin/DashBoardHero";
-import AdminSidebar from "../components/Admin/sidebar/AdminSidebar";
-import AdminProtected from "../hooks/adminProtected";
-import Heading from "../utils/Heading";
+import DashBoardHero from "@/app/components/Admin/DashBoardHero";
+import AdminSidebar from "@/app/components/Admin/sidebar/AdminSidebar";
+import AllUsers from "@/app/components/Admin/Users/AllUsers";
+import AdminProtected from "@/app/hooks/adminProtected";
+import Heading from "@/app/utils/Heading";
 
 type Props = {};
 
-const page: FC<Props> = () => {
+const page = (props: Props) => {
   return (
     <div>
       <AdminProtected>
         <Heading title={` Admin - LMS`} description="" keywords="" />
-        <div className="flex h-[200vh]">
+        <div className="flex h-screen">
           <div className="2xl:w-[16%] w-1/5 z-50">
             <AdminSidebar />
           </div>
           <div className="w-[85%]">
             <DashBoardHero />
+            <AllUsers />
           </div>
         </div>
       </AdminProtected>

@@ -100,7 +100,7 @@ const AdminSidebar = () => {
           left: 0,
           height: "100vh",
           overflowY: isCollapsed ? "hidden" : "scroll",
-          width: isCollapsed ? "60px" : "18%",
+          width: isCollapsed ? "60px" : "15%",
         }}
         className="bg-blue-900/30"
       >
@@ -118,7 +118,7 @@ const AdminSidebar = () => {
                 ml="15px"
               >
                 <Link href="/">
-                  <h3 className="text-[25px] font-Poppins uppercase text-white mr-12">
+                  <h3 className="text-[25px] font-Poppins uppercase text-white mr-4">
                     LMS
                   </h3>
                 </Link>
