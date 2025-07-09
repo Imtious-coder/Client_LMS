@@ -1,11 +1,12 @@
-"use client"
+/* eslint-disable  @typescript-eslint/no-unused-vars */
+"use client";
 import { FC, useState } from "react";
 import DashboardHeader from "./DashboardHeader";
 
-type Props = {};
+// type Props = {};
 
-const DashBoardHero:FC<Props> = () => {
-  const [open, setOpen] = useState(false)
+const DashBoardHero: FC = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <DashboardHeader />

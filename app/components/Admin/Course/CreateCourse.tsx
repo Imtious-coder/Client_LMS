@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useCreateCourseMutation } from "@/redux/features/courses/coursesApi";
 import { redirect } from "next/navigation";
@@ -9,9 +11,9 @@ import CourseInformation from "./CourseInformation";
 import CourseOptions from "./CourseOptions";
 import CoursePreview from "./CoursePreview";
 
-type Props = {};
+// type Props = {};
 
-const CreateCourse: FC<Props> = () => {
+const CreateCourse: FC = () => {
   const [createCourse, { isLoading, isSuccess, error }] =
     useCreateCourseMutation();
 

@@ -5,9 +5,9 @@ import AllUsers from "@/app/components/Admin/Users/AllUsers";
 import AdminProtected from "@/app/hooks/adminProtected";
 import Heading from "@/app/utils/Heading";
 
-type Props = {};
+// type Props = {};
 
-const page = (props: Props) => {
+const page = () => {
   return (
     <div>
       <AdminProtected>

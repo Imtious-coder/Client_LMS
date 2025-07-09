@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Box, Modal } from "@mui/material";
 import { FC } from "react";
 

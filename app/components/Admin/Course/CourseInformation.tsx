@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
 import { FC, useState } from "react";
@@ -28,7 +29,7 @@ const CourseInformation: FC<Props> = ({
     if (file) {
       const reader = new FileReader();
 
-      reader.onload = (e: any) => {
+      reader.onload = () => {
         if (reader.readyState === 2) {
           setCourseInfo({ ...courseInfo, thumbnail: reader.result });
         }

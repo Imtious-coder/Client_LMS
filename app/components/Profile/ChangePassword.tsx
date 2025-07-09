@@ -1,19 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useUpdatePasswordMutation } from "@/redux/features/user/userApi";
 import { FC, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { style } from "../../styles/style";
 
-type Props = {};
+// type Props = {};
 
-const ChangePassword: FC<Props> = (props) => {
+const ChangePassword: FC = (props) => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [updatePassword, { isSuccess, error }] = useUpdatePasswordMutation();
 
   const passwordChangeHandler = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     if (newPassword !== confirmPassword) {
       toast.error("Password does not match");
     } else {

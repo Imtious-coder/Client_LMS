@@ -1,5 +1,6 @@
-"use client"
-import CreateCourse from "@/app/components/Admin/Course/CreateCourse";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+"use client";
 import EditCourse from "@/app/components/Admin/Course/EditCourse";
 import DashboardHeader from "@/app/components/Admin/DashboardHeader";
 import AdminSidebar from "@/app/components/Admin/sidebar/AdminSidebar";
@@ -7,10 +8,10 @@ import AdminProtected from "@/app/hooks/adminProtected";
 import Heading from "@/app/utils/Heading";
 import { FC } from "react";
 
-type Props = {};
+// type Props = {};
 
-const page: FC<Props> = ({params}:any) => {
-    const id = params?.id;
+const page: FC = ({ params }: any) => {
+  const id = params?.id;
 
   return (
     <div>

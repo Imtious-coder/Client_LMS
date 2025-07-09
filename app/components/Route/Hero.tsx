@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -5,9 +6,9 @@ import { BiSearch } from "react-icons/bi";
 import bannerImg from "../../../public/assests/bannerImg.png";
 import profileImage1 from "../../../public/assests/man.jpg";
 
-type Props = {};
+// type Props = {};
 
-const Hero: FC<Props> = (props) => {
+const Hero: FC = (props) => {
   return (
     <div className="w-full lg:flex items-center">
       {/* <div className="absolute top-[100px] lg:top-[unset] 2xl:h-[700px] 2xl:w-[700px] xl:h-[600px] xl:w-[600px] h-[50vh] w-[50vh] hero_animation bg-blue-500 rounded-full"></div> */}

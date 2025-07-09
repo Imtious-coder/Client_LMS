@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import CoursePlayer from "@/app/utils/CoursePlayer";
 import Ratings from "@/app/utils/Ratings";

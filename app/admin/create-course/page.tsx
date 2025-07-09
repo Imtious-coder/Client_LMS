@@ -6,9 +6,9 @@ import AdminProtected from "@/app/hooks/adminProtected";
 import Heading from "@/app/utils/Heading";
 import { FC } from "react";
 
-type Props = {};
+// type Props = {};
 
-const page: FC<Props> = (props) => {
+const page: FC = () => {
   return (
     <div>
       <AdminProtected>

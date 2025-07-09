@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { FC, useState } from "react";
 import toast from "react-hot-toast";
@@ -120,7 +121,7 @@ const CourseContent: FC<Props> = ({
       handleCourseSubmit();
     }
   };
-  
+
   return (
     <div className="w-[80%] m-auto mt-24 p-3">
       <form onSubmit={handleSubmit}>
@@ -315,7 +316,7 @@ const CourseContent: FC<Props> = ({
                   <div>
                     <p
                       className="flex items-center text-[18px] text-white cursor-pointer"
-                      onClick={(e) => newContentHandler(item)}
+                      onClick={() => newContentHandler(item)}
                     >
                       <AiOutlinePlusCircle className="mr-2" /> Add New Content
                     </p>

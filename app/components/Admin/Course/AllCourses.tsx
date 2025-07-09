@@ -4,7 +4,7 @@ import {
   useGetAllCourseQuery,
 } from "@/redux/features/courses/coursesApi";
 import { Box, Button, Modal } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -14,9 +14,9 @@ import { format } from "timeago.js";
 import { style } from "../../../styles/style";
 import Loader from "../../Loader";
 
-type Props = {};
+// type Props = {};
 
-const AllCourses = (props: Props) => {
+const AllCourses = () => {
   const { isLoading, data, refetch } = useGetAllCourseQuery(
     {},
     { refetchOnMountOrArgChange: true }
@@ -35,7 +35,7 @@ const AllCourses = (props: Props) => {
       field: "  ",
       headerName: "Edit",
       flex: 0.2,
-      renderCell: (params: any) => {
+      renderCell: (params: GridRenderCellParams) => {
         return (
           <>
             <Button>
@@ -51,7 +51,7 @@ const AllCourses = (props: Props) => {
       field: " ",
       headerName: "Delete",
       flex: 0.2,
-      renderCell: (params: any) => {
+      renderCell: (params: GridRenderCellParams) => {
         return (
           <>
             <Button
@@ -94,19 +94,32 @@ const AllCourses = (props: Props) => {
   //   });
   // }
 
-  const rows: any = [];
-
-  {
-    data &&
-      data.courses.forEach((item: any) => {
-        rows.push({
-          id: item._id,
-          title: item.name,
-          ratings: item.ratings,
-          purchased: item.purchased,
-          created_at: format(item.createdAt),
-        });
+  type Course = {
+    _id: string;
+    name: string;
+    ratings: number;
+    purchased: number;
+    createdAt: string;
+  };
+  
+  const rows: {
+    id: string;
+    title: string;
+    ratings: number;
+    purchased: number;
+    created_at: string;
+  }[] = [];
+  
+  if (data && Array.isArray(data.courses)) {
+    data.courses.forEach((item: Course) => {
+      rows.push({
+        id: item._id,
+        title: item.name,
+        ratings: item.ratings,
+        purchased: item.purchased,
+        created_at: format(item.createdAt),
       });
+    });
   }
 
   useEffect(() => {
@@ -118,12 +131,12 @@ const AllCourses = (props: Props) => {
     }
     if (error) {
       if ("data" in error) {
-        const errorMessage = error as any;
+        const errorMessage = error as { data: { message: string } };
         toast.error(errorMessage.data.message);
         toast.error("Something went wrong");
       }
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, refetch]);
 
   const handleDelete = async () => {
     const id = courseId;

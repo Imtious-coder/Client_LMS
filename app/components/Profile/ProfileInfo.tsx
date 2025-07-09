@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import {

@@ -3,9 +3,9 @@ import { ThemeSwitcher } from "@/app/utils/ThemeSwitcher";
 import { FC, useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
 
-type Props = {};
+// type Props = {};
 
-const DashboardHeader: FC<Props> = () => {
+const DashboardHeader: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -14,7 +14,7 @@ type Props = {
 };
 
 const AllUsers: FC<Props> = ({ isTeam }) => {
-  const { isLoading, data, error } = useGetAllUsersQuery();
+  const { isLoading, data } = useGetAllUsersQuery(undefined);
   const [active, setActive] = useState(false);
 
   const columns = [
@@ -28,7 +28,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
       field: " ",
       headerName: "Delete",
       flex: 0.2,
-      renderCell: (params: any) => {
+      renderCell: () => {
         return (
           <>
             <Button>
@@ -42,7 +42,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
       field: "  ",
       headerName: "Email",
       flex: 0.2,
-      renderCell: (params: any) => {
+      renderCell: (params: import("@mui/x-data-grid").GridRenderCellParams) => {
         return (
           <>
             <Button>
@@ -82,14 +82,32 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
   //   });
   // }
 
-  const rows: any = [];
+  interface UserRow {
+    id: string;
+    name: string;
+    email: string;
+    courses: number;
+    role: string;
+    created_at: string;
+  }
+
+  const rows: UserRow[] = [];
 
   if (isTeam) {
-    const newData =
-      data && data.users.filter((item: any) => item.role === "admin");
+    interface User {
+      _id: string;
+      name: string;
+      email: string;
+      courses: { length: number }[];
+      role: string;
+      createdAt: string;
+    }
 
-    newData &&
-      newData.forEach((item: any) => {
+    const newData =
+      data && data.users.filter((item: User) => item.role === "admin");
+
+    if (newData) {
+      newData.forEach((item: User) => {
         rows.push({
           id: item._id,
           name: item.name,
@@ -99,9 +117,17 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
           created_at: format(item.createdAt),
         });
       });
+    }
   } else {
-    data &&
-      data.users.forEach((item: any) => {
+    if (data && Array.isArray(data.users)) {
+      data.users.forEach((item: {
+        _id: string;
+        name: string;
+        email: string;
+        courses: { length: number }[];
+        role: string;
+        createdAt: string;
+      }) => {
         rows.push({
           id: item._id,
           name: item.name,
@@ -111,6 +137,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
           created_at: format(item.createdAt),
         });
       });
+    }
   }
 
   return (

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 import { FC } from "react";
 import toast from "react-hot-toast";
 import { GrAddCircle } from "react-icons/gr";

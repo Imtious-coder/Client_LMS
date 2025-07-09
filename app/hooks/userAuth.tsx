@@ -1,4 +1,5 @@
-"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { useSelector } from "react-redux";
 
 export default function useUserAuth() {

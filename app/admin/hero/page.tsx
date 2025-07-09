@@ -1,5 +1,5 @@
-"use client"
-import AllCourses from "@/app/components/Admin/Course/AllCourses";
+"use client";
+import EditHero from "@/app/components/Admin/Customization/EditHero";
 import DashBoardHero from "@/app/components/Admin/DashBoardHero";
 import AdminSidebar from "@/app/components/Admin/sidebar/AdminSidebar";
 import AdminProtected from "@/app/hooks/adminProtected";
@@ -18,7 +18,7 @@ const page = () => {
           </div>
           <div className="w-[85%]">
             <DashBoardHero />
-            <AllCourses />
+            <EditHero />
           </div>
         </div>
       </AdminProtected>

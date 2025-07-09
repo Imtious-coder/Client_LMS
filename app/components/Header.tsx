@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import { useSession } from "next-auth/react";
@@ -44,7 +46,7 @@ const Header: FC<Props> = ({ open, activeItem, setOpen, setRoute, route }) => {
     if (isSuccess) {
       toast.success("Login Successfully");
     }
-  }, [data, user]);
+  }, [data, user, isSuccess, socialAuth]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {

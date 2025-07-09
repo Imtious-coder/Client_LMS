@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { FC, useState } from "react";
 import Header from "../components/Header";
@@ -6,9 +8,9 @@ import Heading from "../utils/Heading";
 import Profile from "../components/Profile/Profile";
 import { useSelector } from "react-redux";
 
-type Props = {};
+// type Props = {};
 
-const page: FC<Props> = (props) => {
+const Page: FC = (props) => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(5);
   const [route, setRoute] = useState("Login");
@@ -30,4 +32,4 @@ const page: FC<Props> = (props) => {
   );
 };
 
-export default page;
+export default Page;

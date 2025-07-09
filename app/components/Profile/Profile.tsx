@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useLogOutQuery } from "@/redux/features/auth/authApi";
 import { signOut } from "next-auth/react";
 import { FC, useState } from "react";
+import ChangePassword from "./ChangePassword";
 import ProfileInfo from "./ProfileInfo";
 import SidebarProfile from "./SidebarProfile";
-import ChangePassword from "./ChangePassword";
 
 type Props = {
   user: any;

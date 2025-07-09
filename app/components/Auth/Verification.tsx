@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useRef, useState } from "react";
 // import { toast } from 'react-hot-toast'
@@ -32,13 +33,13 @@ const Verification: FC<Props> = ({ setRoute }) => {
       if ("data" in error) {
         const errorData = error as { data: { message: string } };
         toast.error(errorData.data.message);
-        setInvalidError(true)
+        setInvalidError(true);
         // toast.error("Something went wrong.");
       } else {
         console.log("An error occured", error);
       }
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, setRoute]);
 
   const [verifyNumber, setVerifyNumber] = useState<VerifyNumber>({
     0: "",

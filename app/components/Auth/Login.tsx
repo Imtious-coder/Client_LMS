@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { useFormik } from "formik";

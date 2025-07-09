@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useFormik } from "formik";
@@ -40,12 +41,12 @@ const SignUp: FC<Props> = ({ setRoute }) => {
         toast.error("Something went wrong.");
       }
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, data?.message, setRoute]);
 
   const formik = useFormik({
     initialValues: { name: "", email: "", password: "" },
     validationSchema: schema,
-    onSubmit: async ({name, email, password }) => {
+    onSubmit: async ({ name, email, password }) => {
       const data = {
         name,
         email,
