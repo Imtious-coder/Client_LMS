@@ -35,7 +35,7 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
       await login({ email, password });
-      // console.log(email, password);
+      console.log(email, password);
     },
   });
   useEffect(() => {
@@ -52,8 +52,6 @@ const Login: FC<Props> = ({ setRoute, setOpen }) => {
       }
     }
   }, [isSuccess, error]);
-
-  console.log({ data });
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
   return (
