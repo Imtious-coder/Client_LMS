@@ -1,7 +1,13 @@
+/* eslint-disable  @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
+import {
+  useEditLayoutMutation,
+  useGetHeroDataQuery,
+} from "@/redux/features/layout/layoutApi";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineCamera } from "react-icons/ai";
 import { style } from "../../../styles/style";
 
@@ -14,6 +20,7 @@ const EditHero: FC = () => {
   const { data } = useGetHeroDataQuery("Banner", {
     refetchOnMountOrArgChange: true,
   });
+  const [editLayout, { isLoading, isSuccess, error }] = useEditLayoutMutation();
 
   useEffect(() => {
     if (data) {
@@ -21,10 +28,39 @@ const EditHero: FC = () => {
       setSubTitle(data?.layout?.banner.subTitle);
       setImage(data?.layout?.banner?.image.url);
     }
-  }, [data]);
+    if (isSuccess) {
+      toast.success("Hero updated succssfully");
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorData = error as any;
+        toast.error(errorData?.data.message);
+        toast.error("Something went wrong!");
+      }
+    }
+  }, [data, isSuccess, error]);
 
-  const handleUpdate = () => {};
-  const handleEdit = () => {};
+  const handleUpdate = (e: any) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (reader.readyState === 2) {
+          setImage(e.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEdit = async () => {
+    await editLayout({
+      type: "Banner",
+      image,
+      title,
+      subTitle,
+    });
+  };
 
   return (
     <>
