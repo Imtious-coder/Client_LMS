@@ -1,5 +1,4 @@
 /* eslint-disable  @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useGetCoursesAnalyticsQuery } from "@/redux/features/analytics/analyticsApi";
 import {
@@ -14,11 +13,7 @@ import {
 import { style } from "../../../styles/style";
 import Loader from "../../Loader";
 
-type Props = {};
-
-const CourseAnalytics = (props: Props) => {
-  const { data, isLoading } = useGetCoursesAnalyticsQuery({});
-
+// type Props = {};
   const analyticsData = [
     {
       name: "Jun 2023",
@@ -49,6 +44,11 @@ const CourseAnalytics = (props: Props) => {
       uv: 9,
     },
   ];
+
+const CourseAnalytics = () => {
+  const { data, isLoading } = useGetCoursesAnalyticsQuery({});
+
+
 
   // const analyticsData: any = [];
   // data &&
