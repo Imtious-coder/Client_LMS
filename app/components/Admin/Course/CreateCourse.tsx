@@ -21,6 +21,7 @@ const CreateCourse: FC = () => {
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
+    categories:"",
     price: "",
     estimatedPrice: "",
     tags: "",
@@ -36,6 +37,7 @@ const CreateCourse: FC = () => {
       description: "",
       title: "",
       videoSection: "",
+      videoLenth: "",
       links: [
         {
           title: "",
@@ -63,6 +65,7 @@ const CreateCourse: FC = () => {
         videoUrl: courseContent.videoUrl,
         title: courseContent.title,
         description: courseContent.description,
+        videoLength: courseContent.videoLenth,
         videoSection: courseContent.videoSection,
         links: courseContent.links.map((link) => ({
           title: link.title,

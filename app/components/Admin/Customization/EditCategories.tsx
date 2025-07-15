@@ -12,9 +12,9 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { style } from "../../../styles/style";
 import Loader from "../../Loader";
 
-type Props = {};
+// type Props = {};
 
-const EditCategories = (props: Props) => {
+const EditCategories = () => {
   const { data, isLoading, refetch } = useGetHeroDataQuery("Categories", {
     refetchOnMountOrArgChange: true,
   });
